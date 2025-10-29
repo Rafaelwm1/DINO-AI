@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DINO AI — Mensagem para a Direção</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --primary: #16a34a; /* verde */
+      --primary-600: #059669;
+      --ring: rgba(22, 163, 74, .35);
+      --danger: #ef4444;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: grid; place-items: center; color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-600));
+      font-weight: 700; letter-spacing: .5px;
+    }
+    .title { font-size: 1.1rem; font-weight: 600; }
+    .subtitle { color: var(--muted); font-size: .9rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+
+    .card h2 { margin: 0 0 10px; font-size: 1.05rem; }
+
+    form { display: grid; gap: 12px; }
+
+    label { font-size: .86rem; font-weight: 500; }
+
+    .field { display: grid; gap: 6px; }
+
+    input, textarea, select, button {
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+
+    .control {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #fff;
+      outline: none;
+      transition: box-shadow .2s, border-color .2s, transform .02s;
+    }
+    .control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+    .control[aria-invalid="true"] {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, .15);
+    }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+
+    .hint { color: var(--muted); font-size: .85rem; }
+
+    .actions { display: flex; gap: 10px; align-items: center; }
+
+    .btn {
+      appearance: none; border: 0; cursor: pointer;
+      padding: 12px 16px; border-radius: 12px; font-weight: 600;
+      transition: transform .02s, box-shadow .2s, opacity .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-600));
+      color: #fff; box-shadow: 0 6px 16px rgba(22,163,74,.25);
+    }
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border); color: var(--text);
+    }
+
+    .counter { font-size: .8rem; color: var(--muted); }
+
+    .history {
+      list-style: none; margin: 0; padding: 0; display: grid; gap: 10px;
+      max-height: 520px; overflow: auto;
+    }
+    .history li {
+      border: 1px solid var(--border); background: #fff; border-radius: 12px; padding: 12px;
+    }
+    .history .meta { display: flex; gap: 6px; flex-wrap: wrap; font-size: .86rem; color: var(--muted); margin-bottom: 6px; }
+    .history .name { font-weight: 600; color: var(--text); }
+    .history .msg { white-space: pre-wrap; }
+
+    .empty {
+      border: 1px dashed var(--border); border-radius: 12px; padding: 16px; text-align: center; color: var(--muted);
+    }
+
+    footer { margin-top: 18px; text-align: center; color: var(--muted); font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="brand">
+       <div class="brand">
+  <img src=" logo/logo dino.png " alt="Logo DINO AI" class="logo-img">
+  <div>
+    <div class="title">DINO AI — Mensagens para a Direção</div>
+    <div class="subtitle">Envie sua mensagem via WhatsApp e acompanhe o histórico</div>
+  </div>
+</div>
+
+        <div>
+          <div class="title">DINO AI — Mensagens para a Direção</div>
+          <div class="subtitle">Envie sua mensagem via WhatsApp e acompanhe o histórico</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="formTitle">
+        <h2 id="formTitle">Enviar nova mensagem</h2>
+        <form id="formMensagem" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="nome">Nome do aluno</label>
+              <input id="nome" name="nome" class="control" placeholder="Ex.: Ana Silva" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="turma">Turma</label>
+              <input id="turma" name="turma" class="control" placeholder="Ex.: 3º Informática B" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" class="control" placeholder="Escreva aqui sua mensagem para a direção..." rows="5" maxlength="500" required></textarea>
+            <div class="hint"><span id="contador" class="counter">0</span>/500 caracteres</div>
+          </div>
+
+          <div class="actions">
+            <button id="enviarBtn" type="submit" class="btn btn-primary">📲 Enviar pelo WhatsApp</button>
+            <button id="limparBtn" type="button" class="btn btn-ghost" title="Limpa os campos do formulário">Limpar</button>
+          </div>
+
+          <p class="hint">Ao clicar em enviar, abriremos o WhatsApp com a mensagem preenchida. Confira antes de confirmar o envio.</p>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="histTitle">
+        <h2 id="histTitle">Histórico local</h2>
+        <ul id="historico" class="history" aria-live="polite" aria-relevant="additions"></ul>
+        <div id="emptyHistory" class="empty" hidden>Sem mensagens ainda. Envie a primeira! ✨</div>
+        <div class="actions" style="margin-top:12px;">
+          <button id="exportarBtn" class="btn btn-ghost" type="button">⬇️ Exportar CSV</button>
+          <button id="apagarBtn" class="btn btn-ghost" type="button">🗑️ Apagar histórico</button>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <small>Feito com 💚 para a escola — DINO AI</small>
+    </footer>
+  </div>
+
+  <script>
+    // ===========================
+    // ⚙️ Configurações
+    // ===========================
+    const NUMERO_DIRECAO = "5535997143523"; // DDI + DDD + número (somente dígitos)
+
+    // ===========================
+    // 🧠 Utilidades
+    // ===========================
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => document.querySelectorAll(sel);
+
+    function sanitize(text) {
+      // Remove quebras de linha duplicadas e espaços estranhos
+      return text.replace(/\s+/g, ' ').trim();
+    }
+
+    function formatarMensagem(nome, turma, mensagem) {
+      return `*📩 Mensagem do Aluno (via DINO AI)*\n\n👤 *Nome:* ${nome}\n🏫 *Turma:* ${turma}\n💬 *Mensagem:* ${mensagem}`;
+    }
+
+    function abrirWhatsApp(texto) {
+      const url = `https://wa.me/${NUMERO_DIRECAO}?text=${encodeURIComponent(texto)}`;
+      window.open(url, "_blank");
+    }
+
+    function nowISO() {
+      const d = new Date();
+      return d.toISOString();
+    }
+
+    // ===========================
+    // 💾 Histórico (localStorage)
+    // ===========================
+    const STORAGE_KEY = 'dinoai_hist';
+
+    function carregarHistorico() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        console.error('Erro ao carregar histórico', e);
+        return [];
+      }
+    }
+
+    function salvarHistorico(lista) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
+    }
+
+    function adicionarAoHistorico(item) {
+      const lista = carregarHistorico();
+      lista.unshift(item); // mais recente primeiro
+      salvarHistorico(lista);
+      renderHistorico();
+    }
+
+    function limparHistorico() {
+      localStorage.removeItem(STORAGE_KEY);
+      renderHistorico();
+    }
+
+    function exportarCSV() {
+      const lista = carregarHistorico();
+      if (!lista.length) return alert('Não há registros para exportar.');
+      const header = ['dataISO','nome','turma','mensagem'];
+      const linhas = [header.join(',')].concat(
+        lista.map(r => [r.dataISO, `"${(r.nome||'').replaceAll('"','""')}"`, `"${(r.turma||'').replaceAll('"','""')}"`, `"${(r.mensagem||'').replaceAll('"','""')}"`].join(','))
+      );
+      const blob = new Blob([linhas.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'historico_dino_ai.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function renderHistorico() {
+      const ul = $('#historico');
+      const empty = $('#emptyHistory');
+      ul.innerHTML = '';
+      const lista = carregarHistorico();
+      if (!lista.length) {
+        empty.hidden = false; return;
+      }
+      empty.hidden = true;
+
+      for (const item of lista) {
+        const li = document.createElement('li');
+        const data = new Date(item.dataISO);
+        const dataFmt = data.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' });
+        li.innerHTML = `
+          <div class="meta">
+            <span class="name">${item.nome}</span>
+            <span>•</span>
+            <span>${item.turma}</span>
+            <span>•</span>
+            <span>${dataFmt}</span>
+          </div>
+          <div class="msg">${item.mensagem.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+        `;
+        ul.appendChild(li);
+      }
+    }
+
+    // ===========================
+    // 📨 Envio
+    // ===========================
+    function enviarMensagem(e) {
+      if (e) e.preventDefault();
+      const nome = sanitize($('#nome').value);
+      const turma = sanitize($('#turma').value);
+      const mensagem = $('#mensagem').value.trim();
+
+      const required = [ ['#nome', nome], ['#turma', turma], ['#mensagem', mensagem] ];
+      let invalid = false;
+      for (const [sel, val] of required) {
+        const el = document.querySelector(sel);
+        const ok = Boolean(val);
+        el.setAttribute('aria-invalid', String(!ok));
+        if (!ok) invalid = true;
+      }
+      if (invalid) {
+        alert('Por favor, preencha todos os campos antes de enviar.');
+        return;
+      }
+
+      const texto = formatarMensagem(nome, turma, mensagem);
+
+      // Antiduplicação simples
+      const btn = $('#enviarBtn');
+      btn.disabled = true;
+      abrirWhatsApp(texto);
+
+      adicionarAoHistorico({ dataISO: nowISO(), nome, turma, mensagem });
+
+      // Reset do formulário
+      $('#formMensagem').reset();
+      atualizarContador();
+
+      setTimeout(() => { btn.disabled = false; }, 1500);
+    }
+
+    function atualizarContador() {
+      const msg = $('#mensagem');
+      const count = msg.value.length;
+      $('#contador').textContent = count;
+    }
+
+    // ===========================
+    // 🔌 Eventos
+    // ===========================
+    document.addEventListener('DOMContentLoaded', () => {
+      renderHistorico();
+      atualizarContador();
+
+      $('#formMensagem').addEventListener('submit', enviarMensagem);
+      $('#limparBtn').addEventListener('click', () => { $('#formMensagem').reset(); atualizarContador(); $$('#formMensagem .control').forEach(c=>c.setAttribute('aria-invalid','false')); });
+      $('#apagarBtn').addEventListener('click', () => {
+        if (confirm('Tem certeza que deseja apagar todo o histórico local?')) limparHistorico();
+      });
+      $('#exportarBtn').addEventListener('click', exportarCSV);
+      $('#mensagem').addEventListener('input', atualizarContador);
+
+      // Enviar com Ctrl+Enter (ou Cmd+Enter no macOS)
+      $('#mensagem').addEventListener('keydown', (ev) => {
+        if ((ev.ctrlKey || ev.metaKey) && ev.key === 'Enter') enviarMensagem();
+      });
+    });
+  </script>
+</body>
+</html>
