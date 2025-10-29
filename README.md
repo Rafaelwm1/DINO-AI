@@ -52,12 +52,12 @@ Não há build nem dependências externas além da fonte do Google Fonts.
 No arquivo app.js, altere a constante (apenas dígitos, com DDI+DDD):
 
 // app.js
-const NUMERO_DIRECAO = "5535997143523";
+const NUMERO_DIRECAO = "553599999999";
 
 
 Formato: https://wa.me/<DDI+DDD+NUMERO>
 
-Ex.: Brasil (55) + DDD (35) + número 997143523 → 5535997143523
+Ex.: Brasil (55) + DDD (35) + número 999999999 → 553599999999
 
 2) Logo no topo
 
